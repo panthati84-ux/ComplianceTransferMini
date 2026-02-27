@@ -97,7 +97,7 @@ Rules enforced by the service layer:
      - Start: __Debug > Start Debugging__ (F5) or __Debug > Start Without Debugging__ (Ctrl+F5)
 
 5. Open Swagger
-   - https://localhost:7170/swagger
+   - [https://localhost:7170/swagger](https://localhost:7170/swagger/index.html)
 
 6. (Optional) Dockerized SQL Server
    - `docker-compose up -d` (inspect `docker-compose.yml` for service names)
