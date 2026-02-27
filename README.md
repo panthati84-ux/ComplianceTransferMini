@@ -2,9 +2,7 @@ Compliance Transfer Workflow API
 
 A secure, scalable .NET 8 Web API that implements a structured compliance approval workflow with JWT authentication, role-based authorization, and full audit tracking.
 
-✅ Suggested Project Structure
-
-Use this structure (it matches your current folders and is market-standard for a mid-size .NET API):
+✅ Project Structure
 
 
 
