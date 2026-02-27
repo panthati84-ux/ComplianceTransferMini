@@ -3,6 +3,77 @@
 A secure .NET 8 Web API implementing a state-driven compliance approval workflow with JWT authentication, role-based authorization, and full audit tracking.
 
 ---
+## ✅ Project Structure
+
+ComplianceTransferMini/
+│
+├── ComplianceTransferMini.API/                 # Main Web API project
+│   ├── Controllers/
+│   │   ├── AuthController.cs                   # Login + JWT token
+│   │   ├── TransfersController.cs              # Create/List/Submit requests
+│   │   ├── ApprovalsController.cs              # Approve/Reject requests
+│   │   └── AuditController.cs                  # Audit history per request
+│   │
+│   ├── Services/
+│   │   ├── AuthService.cs                      # Credential validation + token creation
+│   │   └── TransferService.cs                  # Workflow rules + business logic
+│   │
+│   ├── Repositories/
+│   │   ├── UserRepository.cs                   # Users table queries
+│   │   ├── TransferRepository.cs               # TransferRequests table queries
+│   │   └── AuditRepository.cs                  # AuditEvents table queries
+│   │
+│   ├── Models/
+│   │   ├── User.cs
+│   │   ├── TransferRequest.cs
+│   │   └── AuditEvent.cs
+│   │
+│   ├── DTOs/
+│   │   ├── LoginRequest.cs
+│   │   ├── LoginResponse.cs
+│   │   ├── CreateTransferRequestDto.cs
+│   │   ├── TransferResponseDto.cs
+│   │   ├── DecisionDto.cs                      # approve/reject comments
+│   │   └── AuditEventDto.cs
+│   │
+│   ├── Infrastructure/
+│   │   ├── JwtTokenGenerator.cs                # JWT creation helper
+│   │   ├── DbConnectionFactory.cs              # SQL connection helper
+│   │   └── SqlScripts/                         # optional: embedded scripts
+│   │
+│   ├── Common/
+│   │   ├── ApiException.cs                     # custom exception type
+│   │   ├── ErrorHandlingMiddleware.cs          # global exception handling
+│   │   └── CorrelationIdMiddleware.cs          # x-correlation-id
+│   │
+│   ├── Program.cs                              # DI + middleware + auth + swagger
+│   ├── appsettings.json                        # connection string + JWT settings
+│   └── appsettings.Development.json
+│
+├── db/
+│   └── init.sql                                # creates tables + seed users/data
+│
+├── docker-compose.yml                          # optional: SQL Server container
+├── README.md
+├── .gitignore
+└── ComplianceTransferMini.API.sln
+
+---
+
+## Workflow lifecycle
+
+A transfer request follows a strict lifecycle:
+
+**Draft → InReview → Approved / Rejected**
+
+Rules enforced by the service layer:
+- Only **Draft** requests can be **Submitted**
+- Only **InReview** requests can be **Approved** or **Rejected**
+- Invalid transitions return **400 Bad Request**
+- Missing/invalid token returns **401 Unauthorized**
+- Valid token but wrong role returns **403 Forbidden**
+
+---
 
 ## Quickstart (one-shot)
 
