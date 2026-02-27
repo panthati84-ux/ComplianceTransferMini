@@ -6,58 +6,7 @@ A secure, scalable .NET 8 Web API that implements a structured compliance approv
 
 Use this structure (it matches your current folders and is market-standard for a mid-size .NET API):
 
-ComplianceTransferMini/
-│
-├── ComplianceTransferMini.API/                 # Main Web API project
-│   ├── Controllers/
-│   │   ├── AuthController.cs                   # Login + JWT token
-│   │   ├── TransfersController.cs              # Create/List/Submit requests
-│   │   ├── ApprovalsController.cs              # Approve/Reject requests
-│   │   └── AuditController.cs                  # Audit history per request
-│   │
-│   ├── Services/
-│   │   ├── AuthService.cs                      # Credential validation + token creation
-│   │   └── TransferService.cs                  # Workflow rules + business logic
-│   │
-│   ├── Repositories/
-│   │   ├── UserRepository.cs                   # Users table queries
-│   │   ├── TransferRepository.cs               # TransferRequests table queries
-│   │   └── AuditRepository.cs                  # AuditEvents table queries
-│   │
-│   ├── Models/
-│   │   ├── User.cs
-│   │   ├── TransferRequest.cs
-│   │   └── AuditEvent.cs
-│   │
-│   ├── DTOs/
-│   │   ├── LoginRequest.cs
-│   │   ├── LoginResponse.cs
-│   │   ├── CreateTransferRequestDto.cs
-│   │   ├── TransferResponseDto.cs
-│   │   ├── DecisionDto.cs                      # approve/reject comments
-│   │   └── AuditEventDto.cs
-│   │
-│   ├── Infrastructure/
-│   │   ├── JwtTokenGenerator.cs                # JWT creation helper
-│   │   ├── DbConnectionFactory.cs              # SQL connection helper
-│   │   └── SqlScripts/                         # optional: embedded scripts
-│   │
-│   ├── Common/
-│   │   ├── ApiException.cs                     # custom exception type
-│   │   ├── ErrorHandlingMiddleware.cs          # global exception handling
-│   │   └── CorrelationIdMiddleware.cs          # x-correlation-id
-│   │
-│   ├── Program.cs                              # DI + middleware + auth + swagger
-│   ├── appsettings.json                        # connection string + JWT settings
-│   └── appsettings.Development.json
-│
-├── db/
-│   └── init.sql                                # creates tables + seed users/data
-│
-├── docker-compose.yml                          # optional: SQL Server container
-├── README.md
-├── .gitignore
-└── ComplianceTransferMini.API.sln
+
 
 # Compliance Transfer Workflow API
 
